@@ -6,8 +6,10 @@ import thunk from 'redux-thunk';
 
 import App from './App';
 import reducers from './reducers';
+import './index.css';
 
-const store = createStore(reducers, compose(applyMiddleware(thunk)));
+const comopseEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const store = createStore(reducers, comopseEnhancers(applyMiddleware(thunk)));
 
 ReactDOM.render(
     <Provider store={store}>
