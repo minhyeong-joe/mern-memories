@@ -1,5 +1,11 @@
 import express from "express";
-import { getPosts, createPost, updatePost } from "../controllers/posts.js";
+import {
+	getPosts,
+	createPost,
+	updatePost,
+	deletePost,
+	likePost,
+} from "../controllers/posts.js";
 
 const router = express.Router();
 
@@ -21,5 +27,13 @@ router.post("/", createPost);
 // PATCH http://localhost:5000/posts/:id
 // edit a post
 router.patch("/:id", updatePost);
+
+// DELETE http://localhost:5000/posts/:id
+// delete a post
+router.delete("/:id", deletePost);
+
+// PATCH http://localhost:5000/posts/:id/likePost
+// like a post
+router.patch("/:id/likePost", likePost);
 
 export default router;

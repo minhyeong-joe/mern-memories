@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { Grid, CircularProgress } from "@material-ui/core";
+import { Alert } from "@material-ui/lab";
 
 import SinglePost from "./SinglePost";
 import useStyles from "../styles/Posts";
@@ -9,9 +10,9 @@ const Posts = ({ setCurrentId }) => {
 	const classes = useStyles();
 	const posts = useSelector((state) => state.posts);
 
-	return !posts.length ? (
+	return !posts ? (
 		<CircularProgress />
-	) : (
+	) : posts.length ? (
 		<Grid
 			className={classes.container}
 			container
@@ -24,6 +25,8 @@ const Posts = ({ setCurrentId }) => {
 				</Grid>
 			))}
 		</Grid>
+	) : (
+		<Alert severity="warning">There is no post.</Alert>
 	);
 };
 
